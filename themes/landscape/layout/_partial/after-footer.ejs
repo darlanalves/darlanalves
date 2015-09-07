@@ -1,0 +1,45 @@
+<% if (config.disqus_shortname){ %>
+<script>
+  var disqus_shortname = '<%= config.disqus_shortname %>';
+  <% if (page.permalink){ %>
+  var disqus_url = '<%= page.permalink %>';
+  <% } %>
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/<% if (page.comments) { %>embed.js<% } else { %>count.js<% } %>';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<% } %>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<% if (theme.fancybox){ %>
+  <%- css('fancybox/jquery.fancybox') %>
+  <%- js('fancybox/jquery.fancybox.pack') %>
+<% } %>
+
+<%- js('js/script') %>
+<script src="https://cdn.rawgit.com/darlanalves/uloader/master/dist/uloader.js"></script>
+<script>$(function() {
+  var loader = new Uloader();
+  var files = ['https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js'];
+
+  $('script[data-src], style[data-src]').each(function() {
+    var src = $(this).attr('data-src') || '';
+
+    if (src) { files.push(src); }
+  });
+
+  loader.load(files).then(function() {
+    $('[data-app]').each(function() {
+      var appName = $(this).attr('data-app') || 'ng';
+      angular.bootstrap(this, [appName]);
+    });
+  }).catch(function(error) {
+    console.log('Failed to run demos:', error);
+  });
+});
+</script>

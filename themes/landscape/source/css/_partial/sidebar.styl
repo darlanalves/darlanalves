@@ -1,0 +1,70 @@
+if sidebar is bottom
+  @import "sidebar-bottom"
+else
+  @import "sidebar-aside"
+
+.widget
+  @extend $base-style
+  line-height: line-height
+  word-wrap: break-word
+  font-size: 0.9em
+  ul, ol
+    list-style: none
+    margin: 0
+    ul, ol
+      margin: 0 20px
+    ul
+      list-style: disc
+    ol
+      list-style: decimal
+
+.category-list-count
+.tag-list-count
+.archive-list-count
+  padding-left: 5px
+  color: color-grey
+  font-size: 0.85em
+  &:before
+    content: "("
+  &:after
+    content: ")"
+
+.tagcloud
+  a
+    margin-right: 5px
+    display: inline-block
+
+.contact-widget
+  text-align: center
+
+  a.icon
+    width: 36px
+    height: 36px
+    display: inline-block
+    color: #999
+    text-shadow: 0 1px #fff
+    margin-right: 8px
+    line-height: 36px
+    font-size: 36px
+
+    &:hover
+      text-decoration: none
+      border: none
+
+    &:before
+      font-family: FontAwesome
+
+  .icon-tw:before
+    content: "\f081";
+
+  .icon-fb:before
+    content: "\f082";
+
+  .icon-gh:before
+    content: "\f092";
+
+  .icon-email:before
+    content: "\f199";
+
+  .icon-resume:before
+    content: "\f1c1"
